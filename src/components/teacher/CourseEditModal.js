@@ -12,7 +12,7 @@ const MyCourses = () => {
 
   const { user } = useAuth();
   const [courses, setCourses] = useState([]);
-  const [selectedCourse, setSelectedCourse] = useState(null);
+  const [selectedCourse,setSelectedCourse] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false);
 
   useEffect(() => {

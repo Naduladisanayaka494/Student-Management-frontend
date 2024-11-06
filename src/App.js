@@ -23,6 +23,7 @@ function App() {
           <Route path="/teacher" element={<TeacherDashboard />} />
           <Route path="/student" element={<StudentDashboard />} />
           <Route path="/teacher/my-courses" element={<MyCourses />} />
+    
         </Routes>
       </AuthProvider>
     </Router>
