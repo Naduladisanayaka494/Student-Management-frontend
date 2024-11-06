@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
 import { jwtDecode } from "jwt-decode";
+
 const MyEnrollments = () => {
   const token = localStorage.getItem("user");
   const decodedToken = jwtDecode(token);
@@ -29,7 +30,22 @@ const MyEnrollments = () => {
 
       fetchEnrollments();
     }
-  }, [user]);
+  }, [user, student]);
+
+  // Function to unenroll from a course
+  const unenroll = async (courseId) => {
+    try {
+      await axios.post("http://localhost:5000/api/students/unenroll", {
+        studentId: student,
+        courseId,
+      });
+
+      // Update the enrollments list to reflect the unenrollment
+      setEnrollments(enrollments.filter((course) => course._id !== courseId));
+    } catch (error) {
+      console.error("Error unenrolling from course:", error);
+    }
+  };
 
   if (loading) return <p>Loading...</p>;
 
@@ -38,9 +54,20 @@ const MyEnrollments = () => {
       <h2>My Enrollments</h2>
       <div className="list-group">
         {enrollments.map((course) => (
-          <div key={course._id} className="list-group-item">
-            <h4 className="mb-1">{course.title}</h4>
-            <p className="mb-1">{course.description}</p>
+          <div
+            key={course._id}
+            className="list-group-item d-flex justify-content-between align-items-center"
+          >
+            <div>
+              <h4 className="mb-1">{course.title}</h4>
+              <p className="mb-1">{course.description}</p>
+            </div>
+            <button
+              className="btn btn-danger"
+              onClick={() => unenroll(course._id)}
+            >
+              Unenroll
+            </button>
           </div>
         ))}
       </div>
