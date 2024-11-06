@@ -7,24 +7,41 @@ const Navbar = () => {
   const token = localStorage.getItem("user"); // Check if token exists in localStorage
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
       <div className="container">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand text-white font-weight-bold" to="/">
+          <span role="img" aria-label="book">
+            📘
+          </span>{" "}
           Student Management System
         </Link>
-        <div className="collapse navbar-collapse">
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ml-auto">
             {/* Show these links if the user is a teacher */}
             {token && user && user.role === "teacher" && (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/teacher">
+                  <Link className="nav-link text-light" to="/teacher">
                     Teacher Dashboard
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/teacher/my-courses">
-                    Courses
+                  <Link
+                    className="nav-link text-light"
+                    to="/teacher/my-courses"
+                  >
+                    My Courses
                   </Link>
                 </li>
               </>
@@ -34,12 +51,15 @@ const Navbar = () => {
             {token && user && user.role === "student" && (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/student">
+                  <Link className="nav-link text-light" to="/student">
                     Student Dashboard
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/student/enrollments">
+                  <Link
+                    className="nav-link text-light"
+                    to="/student/enrollments"
+                  >
                     My Enrollments
                   </Link>
                 </li>
@@ -57,17 +77,17 @@ const Navbar = () => {
               // If no token (user is not logged in), show these links
               <>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/sign-up">
+                  <Link className="nav-link text-light" to="/sign-up">
                     Sign Up
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/student-login">
+                  <Link className="nav-link text-light" to="/student-login">
                     Student Login
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/teacher-login">
+                  <Link className="nav-link text-light" to="/teacher-login">
                     Teacher Login
                   </Link>
                 </li>
