@@ -1,32 +1,42 @@
+import React, { useState } from "react";
+import axios from "axios";
+import { Navigate } from "react-router-dom";
+import "../components/SignUp";
 
-import React, { useState } from 'react';
-import axios from 'axios';
-import '../components/SignUp';
-import { jwtDecode } from 'jwt-decode';
 const SignUp = () => {
-  const [role, setRole] = useState('student'); 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
+  const [role, setRole] = useState("student");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [redirect, setRedirect] = useState(null); // State to handle redirection
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const apiUrl = role === 'student'
-      ? 'http://localhost:5000/api/students/register'
-      : 'http://localhost:5000/api/teachers/register';
+    const apiUrl =
+      role === "student"
+        ? "http://localhost:5000/api/students/register"
+        : "http://localhost:5000/api/teachers/register";
 
     try {
       await axios.post(apiUrl, { name, email, password });
       setMessage(`Successfully registered as a ${role}!`);
-      setName('');
-      setEmail('');
-      setPassword('');
+      setName("");
+      setEmail("");
+      setPassword("");
+
+      // Set redirect path based on role
+      setRedirect(role === "student" ? "/student-login" : "/teacher-login");
     } catch (error) {
-      console.error('Registration error:', error);
-      setMessage('Registration failed. Please try again.');
+      console.error("Registration error:", error);
+      setMessage("Registration failed. Please try again.");
     }
   };
+
+  // If redirect state is set, navigate to the specified login page
+  if (redirect) {
+    return <Navigate to={redirect} />;
+  }
 
   return (
     <div className="container">
@@ -81,7 +91,12 @@ const SignUp = () => {
                     required
                   />
                 </div>
-                <button type="submit" className="btn button-primary btn-block mt-3">Sign Up</button>
+                <button
+                  type="submit"
+                  className="btn btn-primary btn-block mt-3"
+                >
+                  Sign Up
+                </button>
               </form>
             </div>
           </div>
