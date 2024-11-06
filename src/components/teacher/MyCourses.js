@@ -57,7 +57,7 @@ const MyCourses = () => {
               <p>{course.description}</p>
               <div className="d-flex justify-content-end">
                 <button className="btn btn-primary mr-2" onClick={() => handleEdit(course)}>Edit</button>
-                <button className="btn btn-danger" onClick={() => handleDelete(course._id)}>Delete</button>
+                <button className="btn btn-danger ml-2" onClick={() => handleDelete(course._id)}>Delete</button>
               </div>
             </div>
           ))
