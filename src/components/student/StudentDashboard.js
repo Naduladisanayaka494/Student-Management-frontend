@@ -1,9 +1,12 @@
 // src/StudentDashboard.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useAuth } from '../context/AuthContext';
-
+import { useAuth } from '../../context/AuthContext';
+import { jwtDecode } from 'jwt-decode';
 const StudentDashboard = () => {
+  const token = localStorage.getItem('user');
+  const decodedToken = jwtDecode(token);
+  const   student = decodedToken.id;
   const { user } = useAuth();
   const [courses, setCourses] = useState([]);
 
@@ -24,7 +27,7 @@ const StudentDashboard = () => {
   const handleEnroll = async (courseId) => {
     try {
       await axios.post(
-        `http://localhost:5000/api/courses/${courseId}/enroll`,
+        `http://localhost:5000/api/courses/${courseId}/enroll/`+student,
         {},
         { headers: { Authorization: user.token } }
       );

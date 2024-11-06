@@ -13,9 +13,14 @@ const Navbar = () => {
         <div className="collapse navbar-collapse">
           <ul className="navbar-nav ml-auto">
             {user && user.role === 'teacher' && (
-              <li className="nav-item">
-                <Link className="nav-link" to="/teacher">Teacher Dashboard</Link>
-              </li>
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/teacher">Teacher Dashboard</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/teacher/my-courses">Courses </Link>
+                </li>
+              </>
             )}
             {user && user.role === 'student' && (
               <li className="nav-item">

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../components/SignUp';
-
+import { jwtDecode } from 'jwt-decode';
 const SignUp = () => {
   const [role, setRole] = useState('student'); 
   const [name, setName] = useState('');

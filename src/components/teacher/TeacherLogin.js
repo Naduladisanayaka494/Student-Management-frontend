@@ -1,16 +1,16 @@
-// src/Login.js
+// src/TeacherLogin.js
 import React, { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
-import '../App.css';
+import { useAuth } from '../../context/AuthContext';
+import '../../App.css';
 
-const Login = () => {
+const TeacherLogin = () => {
   const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(email, password);
+    login(email, password, 'teacher');
   };
 
   return (
@@ -18,7 +18,7 @@ const Login = () => {
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card mt-5">
-            <div className="card-header">Login</div>
+            <div className="card-header">Teacher Login</div>
             <div className="card-body">
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -51,4 +51,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default TeacherLogin;
