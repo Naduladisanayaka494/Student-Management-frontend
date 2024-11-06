@@ -1,10 +1,10 @@
-// src/Navbar.js
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+  const token = localStorage.getItem("user"); // Check if token exists in localStorage
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -14,7 +14,8 @@ const Navbar = () => {
         </Link>
         <div className="collapse navbar-collapse">
           <ul className="navbar-nav ml-auto">
-            {user && user.role === "teacher" && (
+            {/* Show these links if the user is a teacher */}
+            {token && user && user.role === "teacher" && (
               <>
                 <li className="nav-item">
                   <Link className="nav-link" to="/teacher">
@@ -23,12 +24,14 @@ const Navbar = () => {
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="/teacher/my-courses">
-                    Courses{" "}
+                    Courses
                   </Link>
                 </li>
               </>
             )}
-            {user && user.role === "student" && (
+
+            {/* Show these links if the user is a student */}
+            {token && user && user.role === "student" && (
               <>
                 <li className="nav-item">
                   <Link className="nav-link" to="/student">
@@ -43,13 +46,15 @@ const Navbar = () => {
               </>
             )}
 
-            {user ? (
+            {/* If the user is logged in, show Logout button */}
+            {token ? (
               <li className="nav-item">
                 <button className="btn btn-danger ml-2" onClick={logout}>
                   Logout
                 </button>
               </li>
             ) : (
+              // If no token (user is not logged in), show these links
               <>
                 <li className="nav-item">
                   <Link className="nav-link" to="/sign-up">
