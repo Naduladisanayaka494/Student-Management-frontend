@@ -2,8 +2,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
-
+import { jwtDecode } from 'jwt-decode';
 const TeacherDashboard = () => {
+const token = localStorage.getItem('user');
+const decodedToken = jwtDecode(token);
+  const   teacher = decodedToken.id;
+  console.log(   teacher )
   const { user } = useAuth();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -12,7 +16,7 @@ const TeacherDashboard = () => {
     try {
       await axios.post(
         'http://localhost:5000/api/courses',
-        { title, description },
+        { title, description,  teacher },
         { headers: { Authorization: user.token } }
       );
       alert('Course created successfully');

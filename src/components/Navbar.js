@@ -7,11 +7,9 @@ const Navbar = () => {
   const { user, logout } = useAuth();
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
-        <Link className="navbar-brand" to="/">
-          Role-Based App
-        </Link>
+        <Link className="navbar-brand" to="/">Student Management System</Link>
         <div className="collapse navbar-collapse">
           <ul className="navbar-nav ml-auto">
             {user && user.role === 'teacher' && (
@@ -30,6 +28,9 @@ const Navbar = () => {
               </li>
             ) : (
               <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/sign-up">Sign Up</Link>
+                </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="/student-login">Student Login</Link>
                 </li>

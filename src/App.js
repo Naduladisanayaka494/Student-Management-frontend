@@ -8,6 +8,7 @@ import TeacherLogin from './components/TeacherLogin';
 import TeacherDashboard from './components/TeacherDashboard';
 import StudentDashboard from './components/StudentDashboard';
 import './App.css';
+import SignUp from './components/SignUp';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <AuthProvider>
         <Navbar />
         <Routes>
+           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/student-login" element={<StudentLogin />} />
           <Route path="/teacher-login" element={<TeacherLogin />} />
           <Route path="/teacher" element={<TeacherDashboard />} />
