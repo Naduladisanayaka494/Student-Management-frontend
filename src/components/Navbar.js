@@ -63,6 +63,11 @@ const Navbar = () => {
                     My Enrollments
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link text-light" to="/student/homework">
+                    My Homework
+                  </Link>
+                </li>
               </>
             )}
 

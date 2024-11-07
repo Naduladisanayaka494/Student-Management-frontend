@@ -15,7 +15,7 @@ import "./App.css";
 import SignUp from "./components/SignUp";
 import MyCourses from "./components/teacher/MyCourses";
 import MyEnrollments from "./components/student/MyEnrollements";
-
+import StudentHomework from "./components/student/StudentHomework";
 // PrivateRoute component that checks if the token exists
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem("user"); // Check if token is in localStorage
@@ -45,6 +45,15 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route
+            path="/student/homework"
+            element={
+              <PrivateRoute>
+                <StudentHomework />
+              </PrivateRoute>
+            }
+          />
+
           <Route
             path="/student"
             element={

@@ -38,7 +38,9 @@ const TeacherDashboard = () => {
       <div className="row justify-content-center">
         <div className="col-md-8">
           <div className="card mt-5">
-            <div className="card-header">Teacher Dashboard - Create a Course</div>
+            <div className="card-header">
+              Teacher Dashboard - Create a Course
+            </div>
             <div className="card-body">
               <div className="form-group">
                 <label>Course Title</label>
@@ -58,7 +60,7 @@ const TeacherDashboard = () => {
                 ></textarea>
               </div>
               <button
-                className="btn button-primary btn-block mt-3"
+                className="btn btn-success btn-block mt-3"
                 onClick={handleCreateCourse}
               >
                 Create Course

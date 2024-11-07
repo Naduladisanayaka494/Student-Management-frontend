@@ -41,7 +41,12 @@ const TeacherLogin = () => {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
-                <button type="submit" className="btn button-primary btn-block mt-3">Login</button>
+                <button
+                  type="submit"
+                  className="btn btn-success btn-block mt-3"
+                >
+                  Login
+                </button>
               </form>
             </div>
           </div>
