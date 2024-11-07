@@ -103,7 +103,7 @@ const MyCourses = () => {
                   Edit
                 </button> */}
                 <button
-                  className="btn btn-danger ml-2"
+                  className="btn btn-danger mr-4"
                   onClick={() => handleDelete(course._id)}
                 >
                   Delete
